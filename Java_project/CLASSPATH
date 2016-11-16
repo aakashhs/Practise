@@ -1,0 +1,1 @@
+export CLASSPATH=/opt/java/jdk1.8.0_91/bin:/opt/java/jdk1.8.0_91/postgresql-9.4.1211.jre6.jar:/opt/java/jdk1.8.0_91/java-mail-1.4.4.jar:/opt/java/jdk1.8.0_91/iText-5.0.5.jar:/opt/java/jdk1.8.0_91/javax.activation.jar:"${CLASSPATH}"
