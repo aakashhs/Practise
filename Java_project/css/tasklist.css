@@ -1,0 +1,78 @@
+ #wrapper {min-height:100%;
+		position:relative;
+		}
+#header {	border-radius: 8px;
+			background:black;
+			padding:10px;
+			height:70px;
+		}
+body {
+    background-color: #eecffa;
+}
+#content {padding-bottom:50px;
+ 		}	
+table#head{background-color: black;
+	width:100%;
+	}
+#footer {padding-top:10px;
+			border-radius: 8px;
+			background:black;
+			width:100%;
+			height:50px;
+			position:absolute;
+			bottom:0;
+			left:0;
+		}
+ul {                list-style-type: none;
+                	margin: 0;
+			  overflow: hidden;  
+		     background-color: black;
+}
+ li {                float: right;
+            }
+  li a, .dropbtn { display: inline-block;
+                		color: white;
+		                text-align: right;
+				min-width: 120px;
+			   padding: 14px 16px;
+	                text-decoration: none; 
+           }
+ li a:hover, .dropdown:hover .dropbtn {   
+		  background-color: #eecffa;
+			color:black;
+            }    
+li.dropdown {               display: inline-block;
+    }
+  .dropdown-content {                
+		display: none; 
+               position: absolute;
+                background-color: #f9f9f9;
+	        min-width: 120px;
+               box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            }
+.dropdown-content a {      color: black; 
+              padding: 12px 16px;
+                text-decoration: none; 
+               display: block;
+                text-align: left;   
+         }  
+.dropdown-content a:hover {background-color: #FFE4B5;}
+.dropdown:hover .dropdown-content {
+	                display: block;            }	
+input[type="button"]{width: 100%;
+	    background-color: black;
+	    color: whitesmoke;
+		    padding: 9px 8px;
+		   margin: 2px 0;
+		    border: none;
+		    border-radius: 4px;
+	    cursor: pointer;	}
+#goog:hover, #twit:hover {background-color:#eecffa;
+	border-radius: 4px;
+}
+td button.i { background-color : ghostwhite;
+	 border-radius:4px;
+}	
+input[type="button"]:hover {   background-color: gray;}
+ td button.i:hover{background-color:gainsboro;} 
+td button.i:active{text-decoration:none;}	

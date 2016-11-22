@@ -37,42 +37,20 @@ public class History{
 	public static String history(String responseString, Data s, ResultSet res, Statement stmt, String title, String flash) throws Exception{
 		String username = s.getUsername();
 		responseString = "<html><head><meta charset=\"utf-8\">  <meta name=\"viewport\" content=\"width=device-width, "+
-			"initial-scale=1\"><style>		#wrapper {	min-height:100%;	position:relative;}#header {			"+
-			"border-radius: 8px;	background:black;	padding:10px;}#content {	padding-bottom:50px;}#footer {			"+
-			"border-radius: 8px;padding-top:10px;	background:black;	width:100%;	height:50px;	position:absolute;	"+
-			"bottom:0;	left:0;}		ul {                list-style-type: none;                margin: 0;                padding: 0;                overflow:"+
-			" hidden;                background-color: black;            }            li {               float: left;            }            li a, .dropbtn {           "+
-			"     display: inline-block;                color: white;                text-align: right;                padding: 12px 16px;	"+
-			"	min-width:120px;                text-decoration: none;            }            li a:hover, .dropdown:hover .dropbtn {            "+
-			"    background-color: #eecffa;color:black;            }            li.dropdown {                display: inline-block;            }       "+
-			"     .dropdown-content {               display: none;                position: absolute;                background-color: #f9f9f9;         "+
-			"       min-width: 120px;                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);            }            .dropdown-content a {          "+
-			"      color: black;                padding: 12px 16px;                text-decoration: none;                display: block;                text-align:"+
-			" left;            }            .dropdown-content a:hover {background-color: #FFE4B5}            .dropdown:hover .dropdown-content"+
-			" {                display: block;            }		.modal {		    display: none; 		    position: fixed;		    z-index: 1; 	"+
-			"	    padding-top: 100px; 		    left: 0;		    top: 0;		    width: 100%; 		    height: 100%;		    overflow: auto;"+
-			"		    background-color: rgb(0,0,0); 		    background-color: rgba(0,0,0,0.4);		}		.modal-content {	"+
-			"	    background-color: #fefefe;		    margin: auto;		    padding: 20px;		    border: 1px solid #888;		"+
-			"    width: 30%;		}		.close {		    color: #aaaaaa;		    float: right;		    font-size: 28px;		"+
-			"    font-weight: bold;		}		.close:hover,		.close:focus {		    color: red;		    text-decoration: none;	"+
-			"	    cursor: pointer;		}		#goog:hover, #twit:hover {background-color: #eecffa;border-radius: 4px;}		"+
-			"</style></head><div id = \"wrapper\"><body bgcolor = #eecffa><div id = \"header\" style=\"height:70px;\"><header>"+
-			"<table bgcolor = 'black' style=\"width:100%\"><tr >			<td style = \"text-align:left;width:6%;color:white;\">"+
+			"initial-scale=1\"><link rel = 'stylesheet' type = 'text/css' href = 'hp.css'></head><div id = \"wrapper\"><body bgcolor = #eecffa><div id = \"header\" style=\"height:70px;\"><header>"+
+			"<table bgcolor = 'black' style=\"width:100%\"><tr ><td style = \"text-align:left;width:6%;color:white;\">"+
 			"<h1 style=\"padding-top: 3%;\">JAVA</h1></td><td  style = \"text-align:center;width:88%;color:white;\">			"+
 			"<h1 style = \"padding-top:1%;padding-left:4vw;\">"+title+" History</h1></td><td style = \"width:6%;\">			"+
 			"<ul>              <li class='dropdown'><a href = '#'><img style = 'width: 20px;height: 20px;background: #555;vertical-align: sub;' "+
-			"src='data:image/png;base64,"+s.encoding("msuser1.jpg","jpg")+"' alt='logo' /> "+username+"</a>"+
+			"src='msuser1.png' alt='logo' /> "+username+"</a>"+
 			"<div class='dropdown-content'>	 <a href = 'homepage'><img style = 'float: left;width: 20px;height: 20px;background: #555;'"+
-			" src='data:image/jpeg;base64,"+s.encoding("home.png","png")+"' />Home</a><a href = 'contactus'>"+
-			"<img style = 'float: left;width: 20px;height: 20px;background: #555;' src = 'data:image/jpeg;base64,"+
-			s.encoding("contact_us.png","png")+"' /> Contact Us</a>";
+			" src='home.png' />Home</a><a href = 'contactus'>"+
+			"<img style = 'float: left;width: 20px;height: 20px;background: #555;' src = 'contactus.png' /> Contact Us</a>";
 		if(title != "User"){
 		int countLogin = s.getCountLogin();
-		responseString += "<a href='userhistory' id = 'userhistory'><img style = 'float: left;width: 20px;height: 20px;background: #555;'src='data:image/jpeg;base64,"+
-			s.encoding("history.jpg","jpg")+"' alt='logo' /> User History("+countLogin+")</a>";
+		responseString += "<a href='userhistory' id = 'userhistory'><img style = 'float: left;width: 20px;height: 20px;background: #555;'src='history.png' alt='logo' /> User History("+countLogin+")</a>";
 		}
-		responseString += "<a href='tasklist'><img style = 'float: left;width: 20px;height: 20px;background: #555;' src='data:image/jpeg;base64,"+
-			s.encoding("logout.jpg","jpg")+"' /> Log out</a></div>          </li>            </ul></td></tr></table>			</header></div><br>";
+		responseString += "<a href='tasklist'><img style = 'float: left;width: 20px;height: 20px;background: #555;' src='logout.png' /> Log out</a></div>          </li>            </ul></td></tr></table>			</header></div><br>";
 		if(flash != ""){
 		responseString += "<div id=\"Text\" style=\"color : green;\"><center> <p> The pdf has been successfully "+flash+
 			"! </p> </center></div><script type = \"text/javascript\">    		setTimeout ( \"vanish()\", 30000 );	"+
@@ -96,17 +74,11 @@ public class History{
 					responseString += "<tr><td>"+res.getString("date")+"</td><td>"+res.getString("time")+"</td><td><pre>"+
 						res.getString("input")+"</pre></	td><td><pre>"+res.getString("output")+"</pre></td></tr>";
 				}
-				responseString += "</table><br/><center><input type = 'submit' name = 'DownloadChallengePDF' value = 'Download PDF'"+
+				responseString += "</table><br/><center><input type = 'submit' name = 'DownloadChallengePDF' value = 'Get PDF'"+
 					" id = 'downloadpdf'></center><br><br><br><div id=\"myModal\" class=\"modal\">  <div class=\"modal-content\">   "+
 					" <span class=\"close\">&times;</span><br><br><br><form><input type=\"radio\" name = \"Downloadtask\""+
-					" value = \"Downloadtask\">Download as Pdf<br/><input type=\"radio\" name = \"Downloadtask\" value = \"Downloadtaskmail\">"+
-					"Mail the Pdf<br/><br><input type=\"submit\" value = \"OK\" id=\"ok\"><br/></form>  </div></div><script>"+
-					"var modal = document.getElementById('myModal');\r\nvar btn = document.getElementById(\"downloadpdf\");\r\n"+
-					"var span = document.getElementsByClassName(\"close\")[0];\r\nvar submit = document.getElementById('ok');\r\n"+
-					"btn.onclick = function() {\r\n    modal.style.display = \"block\";\r\n}\r\nsubmit.onclick = function() {\r\n   "+
-					" modal.style.display = \"none\";\r\n}\r\nspan.onclick = function() {\r\n    modal.style.display = \"none\";\r\n}"+
-					"\r\nwindow.onclick = function(event) {\r\n    if (event.target == modal) {\r\n        modal.style.display = \"none\";\r\n "+
-					"   }\r\n}\r\n</script></article></div>";
+					" value = \"Downloadtask\">Download<br/><input type=\"radio\" name = \"Downloadtask\" value = \"Downloadtaskmail\">"+
+					"Mail<br/><br><input type=\"submit\" value = \"OK\" id=\"ok\"><br/></form>  </div></div><script src = 'hp.js' ></script></article></div>";
 			}
 		}
 		else
@@ -117,28 +89,21 @@ public class History{
 			while (res.next()){
 				responseString += "<tr><td>"+username+"</td><td>"+res.getString("time")+"</td><td>"+res.getString("date")+"</td></tr>";
 			}
-			responseString += "</table><br/><center><input type = 'submit' name = 'loginhistoryPDF' value = 'Login History Pdf'"+
+			responseString += "</table><br/><center><input type = 'submit' name = 'loginhistoryPDF' value = 'Get Pdf'"+
 				" id = 'downloadpdf'></center><br><br><br><div id=\"myModal\" class=\"modal\">  <div class=\"modal-content\"> "+
 				"   <span class=\"close\">&times;</span><br><br><br><form><input type=\"radio\" name = \"getUserPdf\""+
-				" value = \"getUserPdf\">Download as Pdf<br/>				<input type=\"radio\" name = \"getUserPdf\""+
-				" value = \"getUserPdfmail\">Mail the Pdf<br/>	<br><br><input type=\"submit\" value = \"OK\" id=\"ok\"><br/>"+
-				"</form>  </div></div><script>var modal = document.getElementById('myModal');\r\n"+
-				"var btn = document.getElementById(\"downloadpdf\");\r\nvar span = document.getElementsByClassName(\"close\")[0];"+
-				"\r\nvar submit = document.getElementById('ok');\r\nbtn.onclick = function() {\r\n    modal.style.display = \"block\";"+
-				"\r\n}\r\nsubmit.onclick = function() {\r\n    modal.style.display = \"none\";\r\n}\r\nspan.onclick = function() {"+
-				"\r\n    modal.style.display = \"none\";\r\n}\r\nwindow.onclick = function(event) {\r\n    if (event.target == modal) {"+
-				"\r\n        modal.style.display = \"none\";\r\n    }\r\n}\r\n</script></article></div>";
+				" value = \"getUserPdf\">Download<br/>				<input type=\"radio\" name = \"getUserPdf\""+
+				" value = \"getUserPdfmail\">Mail<br/>	<br><br><input type=\"submit\" value = \"OK\" id=\"ok\"><br/>"+
+				"</form>  </div></div><script src = 'hp.js' ></script></article></div>";
 		}
 
 
 		responseString += "<div id = \"footer\"><footer><table bgcolor = 'black' style=\"width:98%\"><tr>"+
 			"<td style = \"width: 92%;\"><div style = \"align:left; color:white;\"><i>&copy; Developed by - Aakash Hs</i>"+
 			"</div></td><td  style = \"width: 4%;\"><div align='right'><a target=\"_blank\" "+
-			"href = 'https://plus.google.com/u/0/117600849507101148331'><input type=\"image\" src='data:image/jpeg;base64,"+
-			s.encoding("google_plus.png","png")+"' height = \"30\" width = \"30\" id = 'goog'></a></div></td>"+
+			"href = 'https://plus.google.com/u/0/117600849507101148331'><input type=\"image\" src='google_plus.png' height = \"30\" width = \"30\" id = 'goog'></a></div></td>"+
 			"<td  style = \"width: 4%;\"><div align='right'><a target=\"_blank\" href = 'https://twitter.com/stuart771995'>"+
-			"<input type=\"image\" src=\"data:image/jpeg;base64,"+s.encoding("Twitter_logo.png","png")+
-			"\" height = \"30\" width = \"30\" id = 'twit'></div></a></td></tr></table></footer></div></body></div></html>";
+			"<input type=\"image\" src=\"Twitter_logo.png\" height = \"30\" width = \"30\" id = 'twit'></div></a></td></tr></table></footer></div></body></div></html>";
 		return responseString;
 	}
 
@@ -220,7 +185,7 @@ public class History{
 		}
 		PdfReader pdfReader = new PdfReader("hello.pdf");
 		PdfStamper pdfStamper = new PdfStamper(pdfReader, new FileOutputStream(src));
-		Image image1 = Image.getInstance("Images/Mahaswami Logo-01.png");
+		Image image1 = Image.getInstance("png/Mahaswami Logo-01.png");
 		image1.setAbsolutePosition(100, 200);
 		image1.scaleToFit(PageSize.A4.getWidth()-200, PageSize.A4.getHeight()-200);
 		PdfContentByte waterMark ;

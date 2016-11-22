@@ -18,48 +18,18 @@ public class Mailpdf{
 		String username = s.getUsername();
 		int countLogin = s.getCountLogin();
 		responseString = "<html><head><meta charset=\"utf-8\">  <meta name=\"viewport\" content=\"width=device-width, "+
-			"initial-scale=1\"><style>#wrapper {	min-height:100%;	position:relative;}#header {			border-radius: 8px;"+
-			"	background:black;	padding:10px;}#content {	padding-bottom:50px; /* Height of the footer element */}"+
-			"#footer {padding-top:10px;			border-radius: 8px;	background:black;	width:100%;	height:50px;"+
-			"	position:absolute;	bottom:0;	left:0;}				ul {			       list-style-type: none;		"+
-			"	       margin: 0;			       padding: 0;			       overflow: hidden;			       background-color: black;	"+
-			"		   	}			  	 li {			       float: left;			   }			   li a, .dropbtn {			  "+
-			"     display: inline-block;			       color: white;			       text-align: right;			       padding: 12px 16px;	"+
-			"			min-width: 120px;			       text-decoration: none;			   }			   "+
-			"li a:hover, .dropdown:hover .dropbtn {			       background-color: #eecffa;color:black;			   }		"+
-			"	   li.dropdown {			       display: inline-block;			   }			   .dropdown-content {			   "+
-			"    display: none;			       position: absolute;			       background-color: #f9f9f9;			   "+
-			"    min-width: 120px;			       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);			   }			"+
-			"   .dropdown-content a {			       color: black;			       padding: 12px 16px;	text-decoration: none;"+
-			"			       display: block;			       text-align: left;			   }			 "+
-			"  .dropdown-content a:hover {background-color: #FFE4B5}			   .dropdown:hover .dropdown-content {		"+
-			"	       display: block;			   }			textarea, select {				    width: 100%;				    padding: 12px"+
-			" 20px;				    margin: 8px 0;				    display: inline-block;				    border: 1px solid #ccc;	"+
-			"			    border-radius: 4px;				    box-sizing: border-box;				}				"+
-			"input[type=submit] {				    width: 20%;				    background-color: #4CAF50;				   "+
-			" color: white;				    padding: 14px 20px;				    margin: 8px 0;				    border: none;	"+
-			"			    border-radius: 4px;				    cursor: pointer;				}				"+
-			"input[type=submit]:hover {				    background-color: #45a049;			}				"+
-			"div.contact {				width: 60%;				    height: 1500px;				    background-color: white;	"+
-			"			    margin:0 auto;				    margin-top: 40px;				    padding-top: 30px;				"+
-			"    padding-left: 40px;				     padding-right: 40px;					padding-bottom: 30px;				"+
-			"    border-radius: 5px;				    color: black;				    font-weight: bolder;				  "+
-			"  font-size: 18px;				}		#goog:hover, #twit:hover {background-color: #eecffa;border-radius: 4px;}	"+
-			"	</style></head><div id = \"wrapper\"><body bgcolor = #eecffa><div id = \"header\" style=\"height: 70px;\"><header>"+
+			"initial-scale=1\"><link rel = 'stylesheet' type = 'text/css' href = 'mp.css'></head><div id = \"wrapper\"><body bgcolor = #eecffa><div id = \"header\" style=\"height: 70px;\"><header>"+
 			"<table bgcolor = 'black' style=\"width:100%\"><tr ><td style = \"text-align:left;width:6%;color:white;\">"+
 			"<h1 style=\"padding-top: 3%;\">JAVA</h1></td><td  style = \"text-align:center;width:88%;color:white;\">		"+
 			"	<h1 style = \"padding-top:1%;\">Send PDF</h1></td><td style = \"width:6%;\"><ul><li class='dropdown'>"+
 			"<a href='profile' class='dropbtn' style = \"font-size:112%;\">"+
 			"<img style = 'width: 20px;height: 20px;background: #555;vertical-align:sub;'                 "+
-			"  src='data:image/jpeg;base64,"+s.encoding("msuser1.jpg","jpg")+"' alt='logo' /> "+username+
+			"  src='msuser1.png' alt='logo' /> "+username+
 			"</a><div class='dropdown-content' ><a href = 'homepage'><img style = 'float: left;width: 20px;height: 20px;background: #555;'"+
-			" src='data:image/jpeg;base64,"+s.encoding("home.png","png")+"' /> Home</a>		<a href='userhistory'>"+
-			"<img style = 'float: left;width: 20px;height: 20px;background: #555;'                   src='data:image/jpeg;base64,"+
-			s.encoding("history.jpg","jpg")+"' alt='logo' /> User History("+countLogin+")</a>		<a href = 'contactus'>"+
-			"<img style = 'float: left;width: 20px;height: 20px;background: #555;' src = 'data:image/jpeg;base64,"+
-			s.encoding("contact_us.png","png")+"' /> Contact Us</a>		<a href='tasklist'>"+
-			"<img style = 'float: left;width: 20px;height: 20px;background: #555;' src='data:image/jpeg;base64,"+
-			s.encoding("logout.jpg","jpg")+"' /> Log out</a>			       </div>			     </li>			   </ul></td></tr>"+
+			" src='home.png' /> Home</a>		<a href='userhistory'>"+
+			"<img style = 'float: left;width: 20px;height: 20px;background: #555;'    src='history.png' alt='logo' /> User History("+countLogin+")</a>		<a href = 'contactus'>"+
+			"<img style = 'float: left;width: 20px;height: 20px;background: #555;' src = 'contactus.png' /> Contact Us</a>		<a href='tasklist'>"+
+			"<img style = 'float: left;width: 20px;height: 20px;background: #555;' src='logout.png' /> Log out</a>			       </div>			     </li>			   </ul></td></tr>"+
 			"</table></header><br><br></div><div id = \"content\"><article><br><br>					<form id = 'i' name = 'aakash'>"+
 			"<div class = \"contact\">					<p><block>NOTE:</block> if you are entering multiple email id's,"+
 			" separate them with semicolons'(;)</p>					<br/><br/>					<h1>Your name :</h1>"+
@@ -78,12 +48,7 @@ public class Mailpdf{
 			responseString+=s.getChallengeName();
 		}
 		responseString+="_history.pdf</a><br><br><input type = 'submit' name = 'SendPdf"+page+"' value = 'sendpdf' "+
-			"onclick = \"return checkFill()\"></div>					</form>					<script>function checkFill() "+
-			"{\r\n					var contentto = document.getElementById('tomail').value;\r\n					"+
-			"var contentcc = document.getElementById('ccid').value;\r\nvar contentbcc = document.getElementById('bccid').value;"+
-			"\r\n					if (contentto.trim() == '' && contentcc.trim() == '' && contentbcc.trim() == '')\r\n	"+
-			"				{ alert(\"Atleast one of the to-mail or cc or bcc fields must be filled\"); \r\n	return false;\r\n}"+
-			"\r\n else\r\n { \r\nreturn true;\r\n }\r\n	}</script>					</article><br><br></div>"+
+			"onclick = \"return checkFill()\"></div>					</form>					<script src = 'mp.js' ></script>					</article><br><br></div>"+
 			"<div id = \"footer\"><footer><table bgcolor = 'black' style=\"width:98%\"><tr><td style = \"width: 92%;\">"+
 			"<div style = \"align:left; color:white;\"><i>&copy; Developed by - Aakash Hs</i></div></td><td  style = \"width: 4%;\">"+
 			"<div align='right'><a target=\"_blank\" href = 'https://plus.google.com/u/0/117600849507101148331'>"+

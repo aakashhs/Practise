@@ -4,7 +4,6 @@ import java.net.*;
 import java.util.*;
 import java.lang.Object;
 import java.util.Base64;
-import javax.servlet.http.Cookie;
 import java.text.SimpleDateFormat;
 import java.nio.file.*;
 import java.sql.*;
@@ -13,15 +12,13 @@ import java.awt.image.BufferedImage;
 import javax.xml.bind.DatatypeConverter;
 
 public final  class Server {
-	private final static int PORT = 4500;
+	private final static int PORT = 3000;
     	private final static String SERVERSTRING = "Server: Aakash/0.1";
 	static final String JDBC_DRIVER = "org.postgresql.Driver";
 	static final String DB_URL = "jdbc:postgresql://localhost:5432/mahaswami";
 	static final String USER = "postgres";
    	static final String PASS = "root";
-	//static Cookie uid = new Cookie("username", "");
-	//static Cookie cl = new Cookie("countLogin", "0");
-	//static Cookie cid = new Cookie("challengeName", "");
+	private static String img = "", dom = "";
     	private static final Map<String, String> mimeMap = new HashMap<String, String>() {{
 		put("html", "text/html");
 		put("css", "text/css");
@@ -39,16 +36,26 @@ public final  class Server {
 		out.writeBytes("Content-Length: " + length + "\r\n");
 		out.writeBytes("Set-Cookie: username = "+s.getUsername()+"\r\n");
 		out.writeBytes("Set-Cookie: countLogin = " + s.getCountLogin() + "\r\n"); 
-		out.writeBytes("Set-Cookie: challengeName = " + s.getChallengeName() + "\r\n"); 
-		//out.writeBytes("Set-Cookie: " + cid + "\r\n"); 
+		out.writeBytes("Set-Cookie: challengeName = " + s.getChallengeName() + "\r\n");  
 		out.writeBytes(SERVERSTRING);
 		out.writeBytes("\r\n\r\n");
 	}
 	
+	public static void sendFile(DataOutputStream out, byte[] fileBytes, InputStream is,String inString, Data s) throws Exception{
+		img = inString.substring(inString.indexOf('/')+1, inString.lastIndexOf(' '));
+		dom = img.substring(img.indexOf('.')+1);
+		is = new FileInputStream(dom+"/"+img);
+		fileBytes = new byte[is.available()];
+		is.read(fileBytes);
+		respondHeader("200", dom, fileBytes.length, out, s);
+		out.write(fileBytes);
+		out.flush();
+	}
+	
 	public static String navigate(Data s,String responseString,Statement stmt, ResultSet res) throws Exception{
 		String nav = s.getNav();
-		if(nav.contains("Tasklist")){
-			return Tasklist.response( stmt, res, s);
+		if(nav.contains(" Tasklist")){
+			return  Tasklist.response( stmt, res, s);
 		}
 		else if(nav.contains("Contact")){
 			return Contact.contactUs(responseString, false, s);
@@ -60,6 +67,8 @@ public final  class Server {
 		String inputResponse = "";
 		String method = inString.substring(0, inString.indexOf("/")-1);
 		String file = inString.substring(inString.indexOf("/")+1, inString.lastIndexOf("/")-5);
+		byte[] fileBytes = null;
+		InputStream is = null;
 		if(file.equals(""))
 		{
 		    System.out.println("hello");
@@ -70,7 +79,7 @@ public final  class Server {
 		    try {
 	 		String responseString = null; 
 			if(inString.contains("GET / HTTP/1.1")){
-				responseString = Tasklist.response( stmt, res, s);
+				responseString =  Tasklist.response( stmt, res, s);
 			}
 			else if(inString.contains("exec") && (!inString.contains("input"))  && (!inString.contains("uname"))){
 				s.setChallengeName(URLDecoder.decode(inString.substring(inString.lastIndexOf("$")+1,inString.lastIndexOf("%")),"UTF-8"));
@@ -112,7 +121,7 @@ public final  class Server {
 			}
 			else if(inString.contains("tasklist")){
 				s.setUsername("Guest");
-				responseString = Tasklist.response( stmt, res, s);
+				responseString =  Tasklist.response( stmt, res, s);
 			}
 			else if(inString.contains("userhistory") && (!inString.contains("getUserPdf")) && (!inString.contains("SendPdf"))){
 				responseString = History.history(responseString, s, res, stmt, "User", "");
@@ -121,7 +130,7 @@ public final  class Server {
 				responseString = History.history(responseString, s, res, stmt, "Challenge", "");
 			}
 			else if(inString.contains("homepage")){
-				responseString = Tasklist.response( stmt, res, s);
+				responseString =  Tasklist.response( stmt, res, s);
 			}
 			else if(inString.contains("input")&& (!inString.contains("Compare"))){
 				if(s.getUsername() == "Guest"){
@@ -173,13 +182,17 @@ public final  class Server {
 					responseString = History.history(responseString, s, res, stmt, "Challenge", "mailed");
 				}
 			}
+			if(inString.contains("page") && !inString.contains("homepage")){
+				 Tasklist.sendContent(out, inString, s, res, stmt);
+			}
+			if(inString.contains(".png") || inString.contains(".css") || inString.contains(".js")){
+				sendFile(out, fileBytes, is, inString, s);
+			}
 		        respondHeader("200", mime, responseString.length(), out, s);
 		        out.write(responseString.getBytes());
-		    
 		        }catch(FileNotFoundException e) {
 				try {
-				    byte[] fileBytes = null;
-				    InputStream is = new FileInputStream("404.html");
+				    is = new FileInputStream("404.html");
 				    fileBytes = new byte[is.available()];
 				    is.read(fileBytes);
 				    respondHeader("404", "html", fileBytes.length, out, s);
@@ -191,7 +204,7 @@ public final  class Server {
 				}
 		    }
 		}else if(method.equals("POST")) {
-
+			
 		}else if(method.equals("HEAD")) {
 		    respondHeader("200", "html", 0, out, s);
 		}else {
@@ -209,7 +222,6 @@ public final  class Server {
 	Data s = null;
         
         public WorkerRunnable(Socket connectionSocket, Statement stmt, ResultSet res, Data s) throws Exception {
-		System.out.println("in worker runnable");
             this.socket = connectionSocket;
 	    this.stmt = stmt;
 	    this.res = res;
@@ -218,28 +230,22 @@ public final  class Server {
             this.out = new DataOutputStream(this.socket.getOutputStream());
 		String[] line = new String[20];
 		int i = 0;
-		while(!(line[i] = this.in.readLine()).equals("")){
-			System.out.println(i+"--"+line[i]);
+		while((line[i] = this.in.readLine()) != null){
+			if(line[i].equals(""))
+				break;		
 			if(line[i].contains("Cookie")){
 				this.s.setUsername(URLDecoder.decode(this.s.extract("username=(.*); countLogin",line[i]),"UTF-8"));
-				System.out.println(this.s.getUsername());
 				this.s.setCountLogin(Integer.parseInt(URLDecoder.decode(this.s.extract("countLogin=(.*); challengeName",line[i]),"UTF-8")));
-				System.out.println(this.s.getCountLogin());
 				this.s.setChallengeName(URLDecoder.decode(this.s.extract("challengeName=(.*)",line[i]),"UTF-8"));
-				System.out.println(this.s.getChallengeName());
 			}
 			i++;
-			if(line.equals("\r\n"))
-				break;
 		}
-System.out.println("broke");
             this.inString = line[0];
             String time = "[" + s.getTime() + "] ";
-            System.out.print(time + this.socket.getInetAddress().toString() + "--- " + this.inString);  	          
+            //System.out.print(time + this.socket.getInetAddress().toString() + "--- " + this.inString);  	          
         }
 
         public void run() {	
-	System.out.println("in run");
             try{
 		        if(this.inString != null)
 		            respondContent(this.inString, this.out, this.stmt, this.res, this.s);
@@ -262,12 +268,9 @@ System.out.println("broke");
         conn = DriverManager.getConnection(DB_URL,USER,PASS);
 	stmt = conn.createStatement();
 	Data s = new Data();
-	int u = 0;
         while(true) {
-		System.out.println("in main "+u);
             Socket connectionSocket = serverSocket.accept();        
             new Thread(new WorkerRunnable(connectionSocket, stmt, res, s)).start();    
-		u++;
         }
     }
 }
