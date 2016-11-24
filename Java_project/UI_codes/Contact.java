@@ -13,33 +13,33 @@ public class Contact{
 		String username = s.getUsername();
 		int countLogin = s.getCountLogin();
 		responseString = "<html><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"+
-			"<head><link rel = 'stylesheet' type = 'text/css' href = 'feedback.css'></head><div id = \"wrapper\"><body bgcolor = #eecffa><div id = \"header\" style=\"height:70px;\">"+
+			"<head><link rel = 'stylesheet' type = 'text/css' href = 'feedback.css'></head><div id = \"wrapper\"><body><div id = \"header\" >"+
 			"<header><table bgcolor = 'black' style=\"width:100%;\"><tr ><td style = \"text-align:left;width:6%;color:white;\">"+
 			"<h1 style=\"padding-top: 3%;\">JAVA</h1></td><td  style = \"text-align:center;width:88%;color:white;\">		"+
-			"	<h1 style = \"padding-top:1%;\">Contact Form</h1></td><td style = \"width:6%;\"><ul>              <li class='dropdown'>";
+			"	<h1 style = \"padding-top:1%;\">Contact Form</h1></td><td style = \"width:6%;\"><div class=\"dropdown\" >";
 		if(username.equals("Guest"))
 		{
-			responseString += "<a href='#' class='dropbtn' style=\"font-size:112%;\"><img style = 'width: 20px;height: 20px;background: #555;vertical-align: middle;'                   src='msuser1.png' alt='logo' /> Guest</a>";
+			responseString += "<a href='#' class='dropbtn' style=\"font-size:112%;\"><img  class = 'topim'         src='msuser1.png' alt='logo' /> Guest</a>";
 		}else {
-			responseString += "<a href='profile' class='dropbtn' style = \"font-size:112%;\"><img style = 'width: 20px;height: 20px;background: #555;vertical-align:sub;'      "+
+			responseString += "<a href='profile' class='dropbtn' style = \"font-size:112%;\"><img class = 'topim'       "+
 				"             src='msuser1.png' alt='logo' /> "+username+"</a>";
 		}
-		responseString += "<div class='dropdown-content'>  <a href = 'homepage'><img style = 'float: left;width: 20px;height:"+
-			" 20px;background: #555;' src='data:image/jpeg;base64,"+s.encoding("home.png","png")+"' /> Home</a>";
+		responseString += "<div class='dropdown-content'>  <a href = 'homepage'><img class = 'im'"+
+			" src='home.png' /> Home</a>";
 		if(!username.equals("Guest")){
-			responseString += "<a href='userhistory' id = 'userhistory'><img style = 'float: left;width: 20px;height:"+
-				" 20px;background: #555;' src='history.png' alt='logo' />"+
-				" User History("+countLogin+")</a><a href='tasklist'><img style = 'float: left;width: 20px;height: 20px;background: #555;'"+
+			responseString += "<a href='userhistory' id = 'userhistory'><img "+
+				"class = 'im' src='history.png' alt='logo' />"+
+				" User History("+countLogin+")</a><a href='tasklist'><img class = 'im'"+
 				" src='logout.png' /> Log out</a>";
 		}
 		else
 		{
-			responseString += "<a href='login$fromContact$' id><img style = 'float: left;width: 20px;height: 20px;background: #555;' "+
+			responseString += "<a href='login$fromContact$' id><img class = 'im' "+
 				"     src='login.png' alt='logo' /> Log In</a>	"+
-				"	<a href='signup$fromContact$'><img style = 'float: left;width: 20px;height: 20px;background: #555;'"+
+				"	<a href='signup$fromContact$'><img class = 'im'"+
 				" src='signup.png' /> Sign Up</a>";
 		}
-			responseString += "</div></li></ul></td></tr></table></header></div>";
+			responseString += "</div></div></td></tr></table></header></div>";
 		if(flash){
 			responseString += "<div id=\"Text\" style=\"color : green;\"><center> <p> Your Feedback has been successfully mailed!"+
 				" </p> </center></div><script type = \"text/javascript\">    		setTimeout ( \"vanish()\", 30000 );		"+

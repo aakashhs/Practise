@@ -61,5 +61,4 @@ public class Verify{
 		s.setCountLogin(1);
 		return true;
 	}
-
 }

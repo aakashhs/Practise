@@ -17,14 +17,14 @@ public class Pages{
 			"<h1 style = '    margin-top: 0px;    margin-bottom: 0px;'>JAVA</h1></td><td style=\"width:84%;color:white;"+
 			"text-align:center;padding-right:4%;padding-top:1%;\"><h1 style = '    margin-top: 0px;    margin-bottom: 0px;'>"+
 			"Login</h1></td><td style = 'width:6%;'><button class = 'back' onclick='history.go("+back+");' >back</button>"+
-			"</td></tr></tbody></table></header><br><br><body bgcolor = #eecffa>	<form method = 'get'>		"+
+			"</td></tr></tbody></table></header><br><br><body><form method = 'get'>		"+
 			"<div class = \"login\"><center><label><b>User Name :</b></label>&nbsp;<input type=\"text\" "+
 			"placeholder=\"Enter Username\" name=\"uname\" required autofocus><br /><br /><br />			    <label>"+
 			"<b>Password :</b></label>&nbsp;&nbsp;&nbsp;    <input type=\"password\" placeholder=\"Enter Password\" "+
 			"name=\"psw\" id = 'pass' required><br /><br /><br />			    <button type=\"submit\"  >"+
 			"Login</button><br>				<a href='signup' style=\"color: cadetblue;\">Sign Up?</a>			</center>"+
 			"		</div>	<br><br><br><br><br><br>	<footer style='    padding-bottom: 8px;'><table bgcolor = 'black'"+
-			" style=\"width:100%\"><tr><td style = \"width: 95%;\"><div style = \"align:left; color:white;\">"+
+			" style=\"width:100%\"><tr><td style = \"width: 92%;\"><div style = \"align:left; color:white;\">"+
 			"<i>&copy; Developed by - Aakash Hs</i></div></td><td  style = \"width: 4%;\"><div align='right'>"+
 			"<a target=\"_blank\" href = 'https://plus.google.com/u/0/117600849507101148331'><input type=\"image\" "+
 			"src='google_plus.png' height = \"30\" width = \"30\" id = 'goog'>"+
@@ -42,7 +42,7 @@ public class Pages{
 			"<h1 style = '    margin-top: 0px;    margin-bottom: 0px;'>JAVA</h1></td><td style=\"width:84%;color:white;"+
 			"text-align:center;padding-right:8%;\"><h1 style = '    margin-top: 0px;    margin-bottom: 0px;'>Login</h1>"+
 			"</td><td style = 'width:6%;'><button class = 'back' onclick='history.go("+back+");' >back</button></td>"+
-			"</tr></tbody></table></header><br><br><body bgcolor = #eecffa>	<form method = 'get'>		"+
+			"</tr></tbody></table></header><br><br><body>	<form method = 'get'>		"+
 			"<div class = \"login\">			<center>			    <label><b>User Name :</b></label>		"+
 			"	    <input type=\"text\" placeholder=\"Enter Username\" name=\"uname\" style = \"border-color : red;\" "+
 			"required autofocus><br /><br /><br />			    <label><b>Password :</b></label>&nbsp;&nbsp;			 "+
@@ -75,13 +75,13 @@ public class Pages{
 			"<div id=\"mapCanvas\"></div><br> <div id=\"infoPanel\" style='width:50%;'>					    "+
 			"<div id=\"markerStatus\"></div>				    <div id=\"info\"></div>					    <div id=\"address\">"+
 			"</div> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>"+
-			"<label>User Name :</label><br><input placeholder=\"User Name\" type = 'text' max-length = '10' name = 'Userid' required id='userid'"+
+			"<label>User Name :</label><br><input placeholder=\"User Name\" type = 'text' maxlength = '10' name = 'Userid' required id='userid'"+
 			" onblur = 'redden(this)' /><br><br><div id = 'taken' style = \"color:red;\">"+message+"</div>"+
 			"<label>Password :</label><br><input placeholder=\"Password\" type = 'password' name = 'password' required id = 'pass'"+
 			" onblur = 'redden(this)'  /><br><br><label>Confirm Password :</label><br>"+
 			"<input placeholder=\"Confirm Password\" type = 'password' name = 'confirmPassword' required id = 'cpass'"+
-			"onblur = 'redden(this)'  /><br><span id='message'></span><br><input type = 'submit'"+
-			" name = 'Submit' value = 'Submit' id='submit' onclick = 'checkName()' required /><br>"+
+			"onblur = 'redden(this)'  /><br><span id='message' color = 'red' ></span><br><input type = 'submit'"+
+			" name = 'Submit' value = 'Submit' id='submit'  required /><br>"+
 			"</form></div></div><script src = 'sp.js' ></script>"+
 			"</body></html>";
 		return responseString;

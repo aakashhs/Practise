@@ -19,6 +19,9 @@ public class Tasklist{
 			count = res.getInt("count");
 		}
 		resIndex = count/6;
+		if(count % 6 != 0){
+			resIndex++;
+		}
 		String responseString = "<html><head> <meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,"+
 			" initial-scale=1\">"+
 			"<link rel = 'stylesheet' type = 'text/css' href = 'tasklist.css'>"+
@@ -26,41 +29,41 @@ public class Tasklist{
 			"<body><div id = \"header\" ><header>"+
 			"<table id = 'head' ><tr ><td style = \"text-align:left;width:6%;color:white;\">"+
 			"<h1 style=\"padding-top: 3%;\">JAVA</h1></td><td  style = \"text-align:center;width:88%;color:white;\">"+
-			"<h1 style = \"padding-top:1%;padding-left:4vw;\">Challenges List</h1></td><td style = \"width:6%;\"><ul>"+
-			"<li class='dropdown'>";
+			"<h1 style = \"padding-top:1%;padding-left:4vw;\">Challenges List</h1></td><td style = \"width:6%;\">"+
+			"<div class=\"dropdown\" >";
 		if(username.equals("Guest")){
-			responseString += "<a href = '#' style=\"font-size: 120%;\"><img style = 'width: 20px;height: 20px;background: #555;vertical-align: sub;' src='msuser1.png' alt='logo' /> "+username+"</a><div class='dropdown-content'>	";
+			responseString += "<a href = '#' class='dropbtn' style=\"font-size: 120%;\"><img class = 'topim' src='msuser1.png' alt='logo' /> Guest</a>";
 		}else{
-			responseString += "<a href = 'profile' style=\"font-size: 120%;\" ><img style = 'width: 20px;height: 20px;background: #555;vertical-align: sub;' src='msuser1.png' alt='logo' /> "+username+"</a><div class='dropdown-content'>	";
+			responseString += "<a href = 'profile' class='dropbtn' style=\"font-size: 120%;\" ><img class = 'topim'  src='msuser1.png' alt='logo' /> "+username+"</a>";
 		}
-			responseString += "<a href = 'contactus'><img style = 'float: left;width: 20px;height: 20px;background: #555;' src = 'feedback.png' /> Contact Us</a>";
+			responseString += "<div class='dropdown-content'><a href = 'contactus'><img class = 'im'  src = 'feedback.png' /> Contact Us</a>";
 
 		if(username.equals("Guest")){
-			responseString += "<a href='login$fromTasklist$' id><img style = 'float: left;width: 20px;height: 20px;"+
-				"background: #555;' src='login.png' alt='logo' /> Log In</a>"+
-				"<a href='signup$fromTasklist$'><img style = 'float: left;width: 20px;height: 20px;background: #555;' "+
+			responseString += "<a href='login$fromTasklist$' id><img class = 'im'"+
+				" src='login.png' alt='logo' /> Log In</a>"+
+				"<a href='signup$fromTasklist$'><img class = 'im' "+
 				"src='signup.png' /> Sign Up</a>";
 		}
 		else{
-			responseString += " <a href='userhistory' id = 'userhistory'><img style = 'float: left;width: 20px;"+
-				"height: 20px;background: #555;'src='history.png' alt='logo' />"+
-				" User History("+countLogin+")</a><a href='tasklist'><img style = 'float: left;width: 20px;height: 20px;"+"background: #555;' src='logout.png' />Log out</a>";
+			responseString += " <a href='userhistory' id = 'userhistory'><img class = 'im'"+
+				"src='history.png' alt='logo' />"+
+				" User History("+countLogin+")</a><a href='tasklist'><img class = 'im' src='logout.png' />Log out</a>";
 		}
-		responseString += "</div> </li>            </ul></td></tr></table>			</header></div><br>"+
+		responseString += "</div> </div></td></tr></table>			</header></div><br>"+
 			"<div id = \"content\"><article><br><br><center>";
-		responseString += "<div id = \"res\" style = 'padding-left: 5%;'>		<table border = '1' "+
+		responseString += "<div id = \"res\" >		<table border = '1' "+
 				"id = 'content-table' width = '45%' >			<thead>				<tr>	"+
 				"<th style = 'width:5%'>S.No</th><th style = 'padding-left:3%;'><h3 style='display: inline-block;'>"+
 				"Challenge Name</h3><a href=\"javascript:sort(true, 'country', 'content-table');\">"+
-				"<img src='ascend.png' style = 'width: 30px;height: 30px;"+
-				"vertical-align: middle;' /></a><a href=\"javascript:sort(false, 'country', 'content-table');\">"+
-				"<img src='descend.png' style = 'width: 30px;height: 30px;"+
-				"vertical-align: middle;' /></a></th><th style = 'width:5%'>Action</th></tr></thead><tbody>";
+				"<img src='ascend.png' class = 'ima'"+
+				" /></a><a href=\"javascript:sort(false, 'country', 'content-table');\">"+
+				"<img src='descend.png' class = 'ima' "+
+				" /></a></th><th style = 'width:5%'>Action</th></tr></thead><tbody>";
 
 		res = stmt.executeQuery("select * from jchallenges order by challenge_name LIMIT 6 OFFSET 0");
 		int x = 1;
 		while(res.next()){
-			responseString += "<tr><td align='center' >"+x+"</td><td align='center' class=\"country\" >"+res.getString("challenge_name")+"</td><td align='center' ><a href='/exec$"+res.getString("challenge_name")+"%' ><input type = \"button\" value = \"Go To Challenge\"></a></td></tr>";
+			responseString += "<tr><td align='center' >"+x+"</td><td align='center' class=\"country\" >"+res.getString("challenge_name")+"</td><td align='center' ><a href='/exec$"+res.getString("challenge_name")+"%' ><input type = \"button\" value = \"Go To Challenge\"  ></a></td></tr>";
 			x += 1;
 		}
 		responseString += "</tbody></table></div>";
@@ -87,11 +90,11 @@ public class Tasklist{
 		offset += 1;
 		System.out.println("in content"+offset);
 		while(res.next()){
-			resp += "<tr><td align='center' >"+offset+"</td><td align='center' class=\"country\" >"+res.getString("challenge_name")+"</td><td align='center' ><a href='/exec$"+res.getString("challenge_name")+"%' ><input type = \"button\" value = \"Go To Challenge\"></a></td></tr>";
+			resp += "<tr><td align='center' >"+offset+"</td><td align='center' class=\"country\" >"+res.getString("challenge_name")+"</td><td align='center' ><a href='/exec$"+res.getString("challenge_name")+"%' ><input type = \"button\" value = \"Go To Challenge\"  ></a></td></tr>";
 			offset += 1;
 		}	
-			out.write(resp.getBytes());
-			out.flush();
+		out.write(resp.getBytes());
+		out.flush();
 	}
 }
 

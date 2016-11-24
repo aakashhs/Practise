@@ -37,20 +37,20 @@ public class History{
 	public static String history(String responseString, Data s, ResultSet res, Statement stmt, String title, String flash) throws Exception{
 		String username = s.getUsername();
 		responseString = "<html><head><meta charset=\"utf-8\">  <meta name=\"viewport\" content=\"width=device-width, "+
-			"initial-scale=1\"><link rel = 'stylesheet' type = 'text/css' href = 'hp.css'></head><div id = \"wrapper\"><body bgcolor = #eecffa><div id = \"header\" style=\"height:70px;\"><header>"+
+			"initial-scale=1\"><link rel = 'stylesheet' type = 'text/css' href = 'hp.css'></head><div id = \"wrapper\"><body><div id = \"header\" ><header>"+
 			"<table bgcolor = 'black' style=\"width:100%\"><tr ><td style = \"text-align:left;width:6%;color:white;\">"+
 			"<h1 style=\"padding-top: 3%;\">JAVA</h1></td><td  style = \"text-align:center;width:88%;color:white;\">			"+
 			"<h1 style = \"padding-top:1%;padding-left:4vw;\">"+title+" History</h1></td><td style = \"width:6%;\">			"+
-			"<ul>              <li class='dropdown'><a href = '#'><img style = 'width: 20px;height: 20px;background: #555;vertical-align: sub;' "+
-			"src='msuser1.png' alt='logo' /> "+username+"</a>"+
-			"<div class='dropdown-content'>	 <a href = 'homepage'><img style = 'float: left;width: 20px;height: 20px;background: #555;'"+
+			"<div class=\"dropdown\" ><a href = '#' class='dropbtn' ><img  "+
+			"src='msuser1.png' class = 'topim' alt='logo' /> "+username+"</a>"+
+			"<div class='dropdown-content'>	 <a href = 'homepage'><img class = 'im' "+
 			" src='home.png' />Home</a><a href = 'contactus'>"+
-			"<img style = 'float: left;width: 20px;height: 20px;background: #555;' src = 'contactus.png' /> Contact Us</a>";
+			"<img class = 'im' src = 'feedback.png' /> Contact Us</a>";
 		if(title != "User"){
 		int countLogin = s.getCountLogin();
-		responseString += "<a href='userhistory' id = 'userhistory'><img style = 'float: left;width: 20px;height: 20px;background: #555;'src='history.png' alt='logo' /> User History("+countLogin+")</a>";
+		responseString += "<a href='userhistory' id = 'userhistory'><img class = 'im' src='history.png' alt='logo' /> User History("+countLogin+")</a>";
 		}
-		responseString += "<a href='tasklist'><img style = 'float: left;width: 20px;height: 20px;background: #555;' src='logout.png' /> Log out</a></div>          </li>            </ul></td></tr></table>			</header></div><br>";
+		responseString += "<a href='tasklist'><img class = 'im'  src='logout.png' /> Log out</a></div>     </div></td></tr></table>			</header></div><br>";
 		if(flash != ""){
 		responseString += "<div id=\"Text\" style=\"color : green;\"><center> <p> The pdf has been successfully "+flash+
 			"! </p> </center></div><script type = \"text/javascript\">    		setTimeout ( \"vanish()\", 30000 );	"+

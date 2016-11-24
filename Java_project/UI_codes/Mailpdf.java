@@ -18,18 +18,18 @@ public class Mailpdf{
 		String username = s.getUsername();
 		int countLogin = s.getCountLogin();
 		responseString = "<html><head><meta charset=\"utf-8\">  <meta name=\"viewport\" content=\"width=device-width, "+
-			"initial-scale=1\"><link rel = 'stylesheet' type = 'text/css' href = 'mp.css'></head><div id = \"wrapper\"><body bgcolor = #eecffa><div id = \"header\" style=\"height: 70px;\"><header>"+
+			"initial-scale=1\"><link rel = 'stylesheet' type = 'text/css' href = 'mp.css'></head><div id = \"wrapper\"><body><div id = \"header\" style=\"height: 70px;\"><header>"+
 			"<table bgcolor = 'black' style=\"width:100%\"><tr ><td style = \"text-align:left;width:6%;color:white;\">"+
 			"<h1 style=\"padding-top: 3%;\">JAVA</h1></td><td  style = \"text-align:center;width:88%;color:white;\">		"+
-			"	<h1 style = \"padding-top:1%;\">Send PDF</h1></td><td style = \"width:6%;\"><ul><li class='dropdown'>"+
+			"	<h1 style = \"padding-top:1%;\">Send PDF</h1></td><td style = \"width:6%;\"><div class=\"dropdown\" >"+
 			"<a href='profile' class='dropbtn' style = \"font-size:112%;\">"+
-			"<img style = 'width: 20px;height: 20px;background: #555;vertical-align:sub;'                 "+
+			"<img class = 'topim'      "+
 			"  src='msuser1.png' alt='logo' /> "+username+
-			"</a><div class='dropdown-content' ><a href = 'homepage'><img style = 'float: left;width: 20px;height: 20px;background: #555;'"+
+			"</a><div class='dropdown-content' ><a href = 'homepage'><img class = 'im'"+
 			" src='home.png' /> Home</a>		<a href='userhistory'>"+
-			"<img style = 'float: left;width: 20px;height: 20px;background: #555;'    src='history.png' alt='logo' /> User History("+countLogin+")</a>		<a href = 'contactus'>"+
-			"<img style = 'float: left;width: 20px;height: 20px;background: #555;' src = 'contactus.png' /> Contact Us</a>		<a href='tasklist'>"+
-			"<img style = 'float: left;width: 20px;height: 20px;background: #555;' src='logout.png' /> Log out</a>			       </div>			     </li>			   </ul></td></tr>"+
+			"<img class = 'im'    src='history.png' alt='logo' /> User History("+countLogin+")</a>		<a href = 'contactus'>"+
+			"<img class = 'im' src = 'feedback.png' /> Contact Us</a>		<a href='tasklist'>"+
+			"<img class = 'im' src='logout.png' /> Log out</a>			       </div>	</div></td></tr>"+
 			"</table></header><br><br></div><div id = \"content\"><article><br><br>					<form id = 'i' name = 'aakash'>"+
 			"<div class = \"contact\">					<p><block>NOTE:</block> if you are entering multiple email id's,"+
 			" separate them with semicolons'(;)</p>					<br/><br/>					<h1>Your name :</h1>"+
@@ -48,14 +48,13 @@ public class Mailpdf{
 			responseString+=s.getChallengeName();
 		}
 		responseString+="_history.pdf</a><br><br><input type = 'submit' name = 'SendPdf"+page+"' value = 'sendpdf' "+
-			"onclick = \"return checkFill()\"></div>					</form>					<script src = 'mp.js' ></script>					</article><br><br></div>"+
+			"onclick = \"return checkFill()\"></div></form><script src = 'mp.js' ></script></article><br><br></div>"+
 			"<div id = \"footer\"><footer><table bgcolor = 'black' style=\"width:98%\"><tr><td style = \"width: 92%;\">"+
 			"<div style = \"align:left; color:white;\"><i>&copy; Developed by - Aakash Hs</i></div></td><td  style = \"width: 4%;\">"+
 			"<div align='right'><a target=\"_blank\" href = 'https://plus.google.com/u/0/117600849507101148331'>"+
-			"<input type=\"image\" src='data:image/jpeg;base64,"+s.encoding("google_plus.png","png")+"' height = \"30\""+
+			"<input type=\"image\" src='google_plus.png' height = \"30\""+
 			" width = \"30\" id = 'goog'></a></div></td><td  style = \"width: 4%;\"><div align='right'><a target=\"_blank\" "+
-			"href = 'https://twitter.com/stuart771995'><input type=\"image\" src=\"data:image/jpeg;base64,"+
-			s.encoding("Twitter_logo.png","png")+"\" height = \"30\" width = \"30\" id = 'twit'></div></a></td>"+
+			"href = 'https://twitter.com/stuart771995'><input type=\"image\" src=\"Twitter_logo.png\" height = \"30\" width = \"30\" id = 'twit'></div></a></td>"+
 			"</tr></table></footer></div></body></div></html>";
 		return responseString;
 	}

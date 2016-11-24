@@ -54,7 +54,7 @@ public final  class Server {
 	
 	public static String navigate(Data s,String responseString,Statement stmt, ResultSet res) throws Exception{
 		String nav = s.getNav();
-		if(nav.contains(" Tasklist")){
+		if(nav.contains("Tasklist")){
 			return  Tasklist.response( stmt, res, s);
 		}
 		else if(nav.contains("Contact")){
@@ -110,7 +110,7 @@ public final  class Server {
 			}
 			else if(inString.contains("confirmPassword")){
 				if(Verify.validate(inString, s, stmt,res)){
-					if(s.getInputResponse() != ""){
+					if(!(s.getInputResponse().equals(""))){
 						responseString = Execution.executeDesc(responseString ,  stmt,  res, s);
 					}else{
 						responseString = navigate(s, responseString, stmt,  res);
@@ -133,7 +133,7 @@ public final  class Server {
 				responseString =  Tasklist.response( stmt, res, s);
 			}
 			else if(inString.contains("input")&& (!inString.contains("Compare"))){
-				if(s.getUsername() == "Guest"){
+				if(s.getUsername().equals("Guest")){
 					s.setInputResponse(inString);
 					responseString = Pages.login(responseString,s,-1);
 				}else{
@@ -141,7 +141,7 @@ public final  class Server {
 				}
 			}
 			else if(inString.contains("Compare")){
-				if(s.getUsername() == "Guest"){
+				if(s.getUsername().equals("Guest")){
 					s.setInputResponse(inString);
 					responseString = Pages.login(responseString,s,-1);
 				}else{

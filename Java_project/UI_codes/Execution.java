@@ -15,44 +15,44 @@ public class Execution{
 		int countLogin = s.getCountLogin();
 		String challengeName = s.getChallengeName();
 		responseString = "<html><head><meta charset=\"utf-8\">  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"+
-			"<link rel = 'stylesheet' type = 'text/css' href = 'second.css'></head><div id = \"wrapper\">		<body bgcolor = #eecffa>"+
-			"<div id = \"header\" style=\"height:70px;\">		<header><table bgcolor = 'black' style=\"width:100%\"><tr >	"+
+			"<link rel = 'stylesheet' type = 'text/css' href = 'second.css'></head><div id = \"wrapper\"><body>"+
+			"<div id = \"header\">		<header><table bgcolor = 'black' style=\"width:100%\"><tr >	"+
 			"		<td style = \"text-align:left;width:6%;color:white;\"><h1 style=\"padding-top: 3%;\">JAVA</h1></td>"+
 			"<td  style = \"text-align:center;width:88%;color:white;\">	<h1 style = \"padding-top:1%;\">"+challengeName+
-			"</h1></td><td style = \"width:6%;\"><ul>              <li  class='dropdown'>";
+			"</h1></td><td style = \"width:6%;\"><div class=\"dropdown\" >";
 		if(username.equals("Guest")){
-			responseString += "<a href='#' class='dropbtn' style=\"font-size:121%;\"><img style = 'width: 20px;height:"+
-				" 20px;background: #555;vertical-align: middle;'   src='msuser1.png' alt='logo' /> Guest</a>";
+			responseString += "<a href='#' class='dropbtn' style=\"font-size:121%;\"><img "+
+				"  class = 'topim' src='msuser1.png' alt='logo' /> Guest</a>";
 		}
 		else
 		{
 			responseString += "<a href='profile' class='dropbtn' style = \"font-size:121%;\">"+
-				"<img style = 'width: 20px;height: 20px;background: #555;vertical-align:sub;'  src='msuser1.png' alt='logo' /> "+username+"</a>";
+				"<img  class = 'topim' src='msuser1.png' alt='logo' /> "+username+"</a>";
 		}
 		responseString += "<div class='dropdown-content'><a href = 'homepage'>"+
-			"<img style = 'float: left;width: 20px;height: 20px;background: #555;' src='home.png' /> Home</a><a href = 'contactus'><img style = 'float: left;width: 20px;height:"+
-			" 20px;background: #555;' src = 'feedback.png' /> Contact Us</a>";
+			"<img class = 'im' src='home.png' /> Home</a><a href = 'contactus'><img "+
+			"  class = 'im' src = 'feedback.png' /> Contact Us</a>";
 		int count = 0;
 		res = stmt.executeQuery("select count(*) from jchallengehistory where challenge_name = '"+challengeName+"' and username = '"+username+"'");
 		while (res.next()){
 			count = res.getInt("count");
 		}
 		if(!username.equals("Guest")){
-			responseString += "<a href='challengehistory'><img style = 'float: left;width: 20px;height: 20px;background:"+
-				" #555;'    src='history.png' alt='logo' /> Challenge History("+
-				count+")</a>		<a href='userhistory'><img style = 'float: left;width: 20px;height: 20px;background: #555;'   "+
-				"src='history.png' alt='logo' /> User History("+countLogin+
-				")</a><a href='tasklist'><img style = 'float: left;width: 20px;height: 20px;background: #555;'"+
-				" src='logout.png' /> Log out</a>";
+			responseString += "<a href='challengehistory'><img "+
+				"   class = 'im'  src='history.png' alt='logo' /> Challenge History("+
+				count+")</a>		<a href='userhistory'><img    "+
+				"src='history.png' class = 'im' alt='logo' /> User History("+countLogin+
+				")</a><a href='tasklist'><img "+
+				" class = 'im' src='logout.png' /> Log Out</a>";
 		}
 		else
 		{
-			responseString += "<a href='login$fromvulcan$' id><img style = 'float: left;width: 20px;height: 20px;background:"+
-				" #555;' src='login.png' alt='logo' /> Log In</a>	"+
-				"	<a href='signup$fromvulcan$'><img style = 'float: left;width: 20px;height: 20px;background: #555;' "+
-				"src='signup.png' /> Sign Up</a>";
+			responseString += "<a href='login$fromvulcan$' id><img "+
+				"  class = 'im' src='login.png' alt='logo' /> Log In</a>	"+
+				"	<a href='signup$fromvulcan$'><img "+
+				"class = 'im' src='signup.png' /> Sign Up</a>";
 		}
-		responseString += "</div></li></ul></td></tr></table></header></div><br><br><div id = \"content\"><article><div id = \"desc\">";
+		responseString += "</div></div></td></tr></table></header></div><br><br><div id = \"content\"><article><div id = \"desc\">";
 		String description=null;
 		res = stmt.executeQuery("select description from jchallenges where challenge_name = '"+challengeName+"'");
 		while (res.next()){
@@ -74,13 +74,13 @@ public class Execution{
 		int countLogin = s.getCountLogin();
 		responseString = loadDropdown(responseString, stmt, res, s);
 		responseString += "</div><table style=\"width:100%\"><form id ='i'><tr><td style=\"width:45%\">"+
-			"<h1>ENTER INPUT</h1><textarea style=\"resize:vertical;width:100%; height:100%;\" form = \"i\" rows= \"10\" "+
+			"<h1>ENTER INPUT</h1><textarea  form = \"i\" rows= \"10\" "+
 			"cols= \"70\" name = \"input\" id = \"area\" onfocus=\"document.getElementById('out').value='';\" >"+
 			userInput+"</textarea></td>			<td style=\"width:45%\"><h1>OUTPUT</h1>"+
-			"<textarea style=\"resize:vertical;width:100%; height:100%;\" rows='10' cols='70' name = 'output' id='out' >"+
+			"<textarea  rows='10' cols='70' name = 'output' id='out' >"+
 			userOutput+"</textarea></td></tr>			<tr><td style=\"width:45%\">Select a file:"+
 			"<input type=\"file\" name=\"img\" id = 'fileinput' accept = '.txt'></td><script type='text/javascript' src = 'fileread.js'></script>";
-		if(username == "Guest"){
+		if(username.equals("Guest")){
 			responseString += "<td style=\"width:45%\"><input type = \"submit\" value = \"Execute\" form = \"i\""+
 				" >&nbsp;&nbsp;<input type = \"submit\" name = \"Compare\" value = \"Compare\" form = \"i\" ></td>";
 		}else{
@@ -105,10 +105,11 @@ public class Execution{
 		responseString = loadDropdown(responseString, stmt, res, s);
 		String extractedInput = s.extract("input=(.*)&output",inString);
 		String inputString = URLDecoder.decode(extractedInput,"UTF-8");
+		userOutput = URLDecoder.decode(s.extract("output=(.*)&img",inString),"UTF-8");
 		responseString += "</div><table style=\"width:100%\"><form id ='i'><tr><td style=\"width:45%\">"+
-			"<h1>ENTER INPUT</h1><textarea style=\"resize:vertical;width:100%; height:100%;\" form = \"i\" rows= \"10\" "+
+			"<h1>ENTER INPUT</h1><textarea  form = \"i\" rows= \"10\" "+
 			" cols= \"70\" name = \"input\" id = \"area\" onfocus=\"document.getElementById('out').value='';\" >"+inputString+
-			"</textarea></td>			<td style=\"width:45%\"><h1>OUTPUT</h1><textarea style=\"resize:vertical;width:100%; height:100%;\" rows='10' cols='70' name = 'output' id='out' >";
+			"</textarea></td>			<td style=\"width:45%\"><h1>OUTPUT</h1><textarea  rows='10' cols='70' name = 'output' id='out' >";
 		challengeName = s.getChallengeName();		
 		Process p = new ProcessBuilder("javac","/host_msuser1/workspace/training2016/Java_project/Task_codes/"+challengeName.replace(" ","")+".java").start();
 		Process p2 = new ProcessBuilder("chmod","777","/host_msuser1/workspace/training2016/Java_project/Task_codes/"+challengeName.replace(" ","")+".class").start();
@@ -123,13 +124,14 @@ public class Execution{
 		}
 		Process p1 = new ProcessBuilder(command).start();		
 		BufferedReader input = new BufferedReader(new InputStreamReader(p1.getInputStream()));
-     		String line = null; 
+     		String line = null;
+		userOutput = ""; 
 		while ((line = input.readLine()) != null){
          		responseString += line+"\r\n";
 			userOutput += line.trim()+"\r\n";
 		}
 		responseString += "</textarea></td></tr><tr><td style=\"width:45%\">Select a file:"+
-			"<input type=\"file\" name=\"img\" id = 'fileinput'></td><script type='text/javascript'  src = 'fileread.js' >"+
+			"<input type=\"file\" name=\"img\" id = 'fileinput' accept = '.txt' ></td><script type='text/javascript'  src = 'fileread.js' >"+
 			"</script><td style=\"width:45%\"><input type = \"submit\" value = \"Execute\" form = \"i\" onclick = 'return empty();' "+
 			" >&nbsp;&nbsp;<input type = \"submit\" name = \"Compare\" value = \"Compare\" form = \"i\" onclick=\"return validate();\">"+
 			"</td></tr>			</table><script src = 'second.js' ></script>	</form><br/><br/>	</article></div><div id = \"footer\">	<footer><table bgcolor = 'black' style=\"width:98%\">"+
@@ -173,14 +175,14 @@ public class Execution{
 			"<div class='container'>		<table align = 'center' width = 100% height = 20% cellspacing='5'>"+
 			"<caption style = 'font-size:30px;'>"+challengeName+"</caption><br><br><th>User output</th>"+
 			"<th>System output</th><th>Status</th>";
-		for(int i=0;i<userOutput.length;i++){
+		for(int i=0;i<(userOutput.length < sysOutput.length ? userOutput.length : sysOutput.length );i++){
 			if(userOutput[i].trim().equals(sysOutput[i].trim())){
 				responseString += "<tr><td align = 'center' style=\"width:40%;\">"+userOutput[i]+"</td>"+
 					"<td style = 'color:green;width:40%;' align = 'center'>"+sysOutput[i]+
 					"</td><td align = 'center' style=\"color : green;width:20%;\"><pre>Pass</pre></td></tr>";
 			}
 			else{
-				responseString += "<tr><td align = 'center' style=\"width:40%;\">"+userOutput[i]+"</td>"+
+				responseString += "<tr><td align = 'center' style=\"width:40%;\">"+(userOutput[i].equals("") ? "Blank" : userOutput[i] )+"</td>"+
 					"<td style = 'color:red;width:40%;' align = 'center'>"+sysOutput[i]+
 					"</td><td align = 'center' style=\"color : red;width:20%;\">Fail</td></tr>";
 			}
