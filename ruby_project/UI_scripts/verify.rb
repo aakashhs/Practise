@@ -16,7 +16,7 @@ class Verify
 				return 1, username, count_login
 			end
 		}
-		return -1
+		return -1, "Guest", "0"
 	end
 	def self.validate(response, connection)
 		name = CGI.unescape(response.scan(/Name=(.*)&Emailid/).flatten.pop)
@@ -29,7 +29,8 @@ class Verify
 		res.each {|row| puts row['count']
 			if row['count'] != "0" 
 				return "username is taken" 
-			end}
+			end
+		}
 		connection.exec "insert into credentials values('#{username}','#{password}','#{name}','#{emailid}','#{address}','#{coordinates}')"
 		current_time, current_date = CurrentTime.calc_time
 		connection.exec "insert into loginhistory (username, time, date) values('#{username}','#{current_time}','#{current_date}')"

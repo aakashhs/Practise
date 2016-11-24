@@ -17,139 +17,7 @@ class Profile
 				 <meta charset='utf-8'>
 				  <meta name='viewport' content='width=device-width, initial-scale=1'>
 				<style>
-				#load{
-				    width:100%;
-				    height:100%;
-				    position:fixed;
-				    z-index:9999;
-				    background:url(\"https://www.creditmutuel.fr/cmne/fr/banques/webservices/nswr/images/loading.gif\") no-repeat center center rgba(0,0,0,0.25)
-				}
-				input[type=text], input[type=password] {
-				    width: 100%;
-				    padding: 12px 20px;
-				    margin: 8px 0;
-				    display: inline-block;
-				    border: 1px solid #ccc;
-				    box-sizing: border-box;
-				}
-
-
-				button {
-				    background-color: #4CAF50;
-				    color: white;
-				    padding: 14px 20px;
-				    margin: 8px 0;
-				    border: none;
-				    cursor: pointer;
-				    width: 100%;
-				}
-
-
-				.cancelbtn {
-				    width: auto;
-				    padding: 10px 18px;
-				    background-color: #f44336;
-				}
-
-
-				.imgcontainer {
-				    text-align: center;
-				    margin: 24px 0 12px 0;
-				    position: relative;
-				}
-
-				img.avatar {
-				    width: 40%;
-				    border-radius: 50%;
-				}
-
-				.container {
-				    padding: 16px;
-				}
-
-				span.psw {
-				    float: right;
-				    padding-top: 16px;
-				}
-
-
-				.modal {
-				    display: none; 
-				    position: fixed; 
-				    z-index: 1; 
-				    left: 0;
-				    top: 0;
-				    width: 100%; 
-				    height: 100%; 
-				    overflow: auto; 
-				    background-color: rgb(0,0,0); 
-				    background-color: rgba(0,0,0,0.4); 
-				    
-				}
-
-
-				.modal-content {
-				    background-color: #fefefe;
-				    margin: 5% auto 15% auto; 
-				    border: 1px solid #888;
-				    width: 80%; 
-				}
-
-
-				.close {
-				    position: absolute;
-				    right: 25px;
-				    top: 0;
-				    color: #000;
-				    font-size: 35px;
-				    font-weight: bold;
-				}
-
-				.close:hover,
-				.close:focus {
-				    color: red;
-				    cursor: pointer;
-				}
-
-
-				.animate {
-				    -webkit-animation: animatezoom 0.6s;
-				    animation: animatezoom 0.6s
-				}
-
-				@-webkit-keyframes animatezoom {
-				    from {-webkit-transform: scale(0)}
-				    to {-webkit-transform: scale(1)}
-				}
-				    
-				@keyframes animatezoom {
-				    from {transform: scale(0)}
-				    to {transform: scale(1)}
-				}
-
-				@media screen and (max-width: 300px) {
-				    span.psw {
-				       display: block;
-				       float: none;
-				    }
-				    .cancelbtn {
-				       width: 100%;
-				    }
-				}
-				.size{
-					font-size:20px;
-				}
-				input[type = 'submit']{
-				    width: 100px;
-				    height: 35px;
-				    border: 0;
-				    border-radius: 5px;
-				    background-color: #00A79D;
-				    font-weight: bolder;
-				    color:white;
-				    
-				   
-				}
+				
 				</style>
 				<body onload = \"document.getElementById('id01').style.display='block'\">
 				<div id=\"load\"></div>
@@ -244,20 +112,7 @@ class Profile
 				</script>
 				</head>
 				<body>
-				  <style>
-				  #mapCanvas {
-				    width: 500px;
-				    height: 400px;
-				    float: left;
-				  }
-				  #infoPanel {
-				    float: left;
-				    margin-left: 10px;
-				  }
-				  #infoPanel div {
-				    margin-bottom: 5px;
-				  }
-				  </style>
+				
 
 				  <div id=\"mapCanvas\"></div>
 				  <div id=\"infoPanel\">
@@ -317,15 +172,20 @@ class Profile
 	end
 
 	def self.get_cookie(client)
-		puts "yo----------"+client.readline
 		while line = client.readline do 
-			puts line
-			if line =~ /Cookie/ 
-				return line.scan(/username=(.*); count=/).flatten.pop, line.scan(/count=(.*); /).flatten.pop, CGI.unescape(line.scan(/challenge_name=(.*)\r\n/).flatten.pop)
+			if line =~ /Cookie/  
+				return line.scan(/username=(.*); count=/).flatten.pop, line.scan(/count=(.*); /).flatten.pop, CGI.unescape(line.scan(/challenge_name=(.*)\r\n/).flatten.pop.to_s) 
 				break
 			end
 			break if line == "\r\n"
 		end
+	end
+	
+	def self.read(client, response)
+		file_name = CGI.unescape(response.slice(response.index("/")+1...response.rindex(" ")))
+		file = File.read(CGI.unescape(response.slice(response.index(".")+1...response.rindex(" ")))+"/"+file_name)
+		client.write(file)
+		client.flush()
 	end
 
 end

@@ -25,7 +25,7 @@ class Download
 					logo_width = 400
 					pdf.float do
 						pdf.transparent(0.2) do
-							pdf.image '../Images/Mahaswami Logo-01.png', :width => logo_width,
+							pdf.image 'png/Mahaswami Logo-01.png', :width => logo_width,
 							:position => :center, :vposition => :center
 						end
 					end
@@ -74,7 +74,7 @@ class Download
 					logo_width = 400
 					pdf.float do
 						pdf.transparent(0.2) do
-							pdf.image '../Images/Mahaswami Logo-01.png', :width => logo_width,
+							pdf.image 'png/Mahaswami Logo-01.png', :width => logo_width,
 							:position => :center, :vposition => :center
 						end
 					end
